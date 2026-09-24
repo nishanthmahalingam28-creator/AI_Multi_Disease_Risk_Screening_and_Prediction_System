@@ -5,7 +5,7 @@ import sys
 import pandas as pd
 
 MEMBER1_DIR = Path(__file__).resolve().parents[2]
-PROJECT_ROOT = MEMBER1_DIR.parent.parent.parent
+PROJECT_ROOT = MEMBER1_DIR.parent.parent
 sys.path.insert(0, str(MEMBER1_DIR))
 
 from src.split_data import create_train_test_split
