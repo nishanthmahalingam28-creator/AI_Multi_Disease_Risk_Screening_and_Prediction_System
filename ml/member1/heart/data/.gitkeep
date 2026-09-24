@@ -1,0 +1,2 @@
+# Directory for local processed data cache or train/test splits.
+# Original raw dataset resides at: dataset/heart.csv

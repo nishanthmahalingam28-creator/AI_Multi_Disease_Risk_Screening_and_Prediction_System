@@ -1,0 +1,13 @@
+feature_name,original_data_type,logical_type,role,unique_values_count,missing_count,cleaning_action,is_excluded,reason
+id,int64,Identifier,excluded,5110,0,EXCLUDED / DROPPED from cleaned ML dataset,True,Administrative patient primary key (100% unique). Excluded to prevent target leakage and spurious tree memorization.
+gender,object,Categorical Nominal,predictor,3,0,Cleaned whitespace; PRESERVED rare category Other (1 record),False,"Biological sex (Female=2994, Male=2115, Other=1). Other retained for safe downstream pipeline handling."
+age,float64,Numerical Continuous,predictor,104,0,None (Type validated),False,Patient age in years (range 0.08 to 82.0). Strongest individual risk factor for cerebrovascular accident.
+hypertension,int64,Categorical Binary,predictor,2,0,None (Type validated),False,"History of chronic hypertension (0=No, 1=Yes). Major modifiable risk factor for ischemic and hemorrhagic stroke."
+heart_disease,int64,Categorical Binary,predictor,2,0,None (Type validated),False,"History of cardiac disease (0=No, 1=Yes). Direct contributor to cardioembolic stroke."
+ever_married,object,Categorical Binary,predictor,2,0,"Cleaned whitespace (Yes=3353, No=1757)",False,Marital status history. Sociodemographic covariate associated with lifestyle and household support.
+work_type,object,Categorical Nominal,predictor,5,0,"Cleaned whitespace (Private, Self-employed, children, Govt_job, Never_worked)",False,"Employment categorization. Correlates with socioeconomic position, physical activity, and stress."
+Residence_type,object,Categorical Binary,predictor,2,0,"Cleaned whitespace (Urban=2596, Rural=2514)",False,Residential environment classification. Captures healthcare accessibility and urban/rural lifestyle factors.
+avg_glucose_level,float64,Numerical Continuous,predictor,3979,0,None (Type validated; range 55.12-271.74),False,"Average blood glucose level (mg/dL). Biomarker for glycemic dysregulation, pre-diabetes, and metabolic syndrome."
+bmi,float64,Numerical Continuous,predictor,418,201,PRESERVED 201 NaNs (DO NOT drop rows; 16% of stroke cases lack BMI),False,Body mass index (kg/m^2; range 10.3-97.6). 201 missing values preserved for pipeline imputation in Phase 8.
+smoking_status,object,Categorical Nominal,predictor,4,0,Cleaned whitespace; PRESERVED Unknown as informative category (1544 records),False,"Tobacco exposure classification (never smoked, Unknown, formerly smoked, smokes). Unknown retained as distinct category."
+stroke,int64,Target Binary,target,2,0,"Validated binary encoding (0: No Stroke [4861], 1: Stroke [249])",False,Screening target outcome. Severe class imbalance: 4.87% positive prevalence.

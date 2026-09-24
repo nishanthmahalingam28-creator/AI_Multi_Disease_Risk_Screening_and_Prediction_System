@@ -1,0 +1,13 @@
+column_name,dtype,is_target,unique_values_count,missing_count,missing_pct,zero_count,zero_pct,min,mean,median,std,max
+id,int64,False,5110,0,0.0,0,0.0,67.0,36517.8294,36932.0,21161.7216,72940.0
+gender,str,False,3,0,0.0,0,0.0,,,,,
+age,float64,False,104,0,0.0,0,0.0,0.08,43.2266,45.0,22.6126,82.0
+hypertension,int64,False,2,0,0.0,4612,90.2544,0.0,0.0975,0.0,0.2966,1.0
+heart_disease,int64,False,2,0,0.0,4834,94.5988,0.0,0.054,0.0,0.2261,1.0
+ever_married,str,False,2,0,0.0,0,0.0,,,,,
+work_type,str,False,5,0,0.0,0,0.0,,,,,
+Residence_type,str,False,2,0,0.0,0,0.0,,,,,
+avg_glucose_level,float64,False,3979,0,0.0,0,0.0,55.12,106.1477,91.885,45.2836,271.74
+bmi,float64,False,418,201,3.9335,0,0.0,10.3,28.8932,28.1,7.8541,97.6
+smoking_status,str,False,4,0,0.0,0,0.0,,,,,
+stroke,int64,True,2,0,0.0,4861,95.1272,0.0,0.0487,0.0,0.2153,1.0

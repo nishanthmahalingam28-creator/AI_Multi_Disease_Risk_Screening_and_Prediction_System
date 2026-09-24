@@ -1,0 +1,10 @@
+feature_name,original_data_type,logical_type,role,unique_values_count,missing_count,cleaning_action,is_excluded,reason
+Pregnancies,int64,Numerical Discrete,predictor,17,0,PRESERVED valid zeros (111 zeros retained),False,Number of times pregnant (0-17). 0 represents nulliparous females (biologically valid count).
+Glucose,int64,Numerical Continuous,predictor,136,5,Converted 5 biologically impossible zero values to NaN,False,Plasma glucose concentration at 2 hours in OGTT (mg/dl). 0 mg/dl is incompatible with life.
+BloodPressure,int64,Numerical Continuous,predictor,47,35,Converted 35 biologically impossible zero values to NaN,False,Diastolic blood pressure (mm Hg). 0 mm Hg indicates circulatory arrest / unrecorded clinical vitals.
+SkinThickness,int64,Numerical Continuous,predictor,51,227,Converted 227 anatomically impossible zero values to NaN,False,Triceps skin fold thickness (mm). Cannot be 0 mm in human anatomy; represents omitted caliper exam.
+Insulin,int64,Numerical Continuous,predictor,186,374,Converted 374 biologically impossible zero values to NaN,False,2-Hour serum insulin (uU/ml). Absolute zero is physiological impossibility; omitted assay in 48.7% of cohort.
+BMI,float64,Numerical Continuous,predictor,248,11,Converted 11 physically impossible zero values to NaN,False,Body mass index (kg/m^2). Cannot be 0.0; indicates unrecorded height or weight.
+DiabetesPedigreeFunction,float64,Numerical Continuous,predictor,517,0,"None (Type validated; min is 0.078, no zeros)",False,Genetic diabetes pedigree score based on familial diabetic history (range 0.078-2.42).
+Age,int64,Numerical Discrete,predictor,52,0,"None (Type validated; min is 21, no zeros)",False,Patient age in years (range 21-81). Key non-modifiable type 2 diabetes risk factor.
+Outcome,int64,Target Binary,target,2,0,"Validated binary encoding (0: Non-diabetic [500], 1: Diabetic [268])",False,"Screening target outcome. 0=65.10%, 1=34.90%."
