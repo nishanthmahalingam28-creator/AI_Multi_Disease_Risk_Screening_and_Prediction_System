@@ -1,10 +1,30 @@
-"""
-Diabetes Preprocessing Pipeline Module.
+"""Leakage-safe preprocessing pipeline for Diabetes.
 
-Future Responsibilities:
-- Build scikit-learn Pipeline and ColumnTransformer incorporating SimpleImputer/IterativeImputer and StandardScaler/RobustScaler.
-- Strictly fit preprocessors on training splits only to prevent data leakage.
-- Expose fit_preprocessor and transform methods for reproducible inference.
+Phase 6 only: this module constructs an unfitted scikit-learn preprocessor.
+The caller is responsible for fitting it only on training data/folds.
 """
 
-# Placeholder: Preprocessing pipeline implementation will be added in Phase 8.
+from __future__ import annotations
+
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+
+NUMERICAL_FEATURES = [
+    "Pregnancies", "Glucose", "BloodPressure", "SkinThickness",
+    "Insulin", "BMI", "DiabetesPedigreeFunction", "Age",
+]
+CATEGORICAL_FEATURES: list[str] = []
+TARGET_COLUMN = "Outcome"
+
+
+def build_preprocessor() -> ColumnTransformer:
+    """Return an unfitted Diabetes preprocessing transformer."""
+    numeric_pipeline = Pipeline([
+        ("imputer", SimpleImputer(strategy="median")),
+        ("scaler", StandardScaler()),
+    ])
+    return ColumnTransformer([
+        ("numeric", numeric_pipeline, NUMERICAL_FEATURES),
+    ], remainder="drop")
