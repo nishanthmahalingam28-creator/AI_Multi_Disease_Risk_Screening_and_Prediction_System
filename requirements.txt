@@ -20,3 +20,7 @@ seaborn>=0.13.0,<=0.13.2
 
 # Testing & Quality Assurance
 pytest>=8.0.0,<=9.1.1
+
+# Backend API
+fastapi>=0.141.0
+uvicorn>=0.53.0
