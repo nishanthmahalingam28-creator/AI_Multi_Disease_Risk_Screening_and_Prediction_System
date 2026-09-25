@@ -1,0 +1,25 @@
+# Python byte-compiled files and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment configurations and local overrides
+.env
+.env.local
+
+# Testing caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

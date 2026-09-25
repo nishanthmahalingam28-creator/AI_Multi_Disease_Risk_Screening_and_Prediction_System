@@ -1,0 +1,91 @@
+{
+  "disease": "lung_cancer",
+  "target": "lung_cancer",
+  "target_mapping": {
+    "NO": 0,
+    "YES": 1
+  },
+  "inverse_target_mapping": {
+    "0": "NO",
+    "1": "YES"
+  },
+  "gender_mapping": {
+    "FEMALE": 0,
+    "MALE": 1
+  },
+  "inverse_gender_mapping": {
+    "0": "FEMALE",
+    "1": "MALE"
+  },
+  "feature_count": 15,
+  "features": [
+    "gender",
+    "age",
+    "smoking",
+    "yellow_fingers",
+    "anxiety",
+    "peer_pressure",
+    "chronic_disease",
+    "fatigue",
+    "allergy",
+    "wheezing",
+    "alcohol_consuming",
+    "coughing",
+    "shortness_of_breath",
+    "swallowing_difficulty",
+    "chest_pain"
+  ],
+  "scaled_features": [
+    "age"
+  ],
+  "binary_features": [
+    "gender",
+    "smoking",
+    "yellow_fingers",
+    "anxiety",
+    "peer_pressure",
+    "chronic_disease",
+    "fatigue",
+    "allergy",
+    "wheezing",
+    "alcohol_consuming",
+    "coughing",
+    "shortness_of_breath",
+    "swallowing_difficulty",
+    "chest_pain"
+  ],
+  "random_state": 42,
+  "test_size": 0.2,
+  "raw_dataset_sha256": "b5df44c7a33d095457bd67d59806ce96797d2aef591781af6ef4f1d93c5ac3d2",
+  "total_rows": 309,
+  "train_rows": 247,
+  "test_rows": 62,
+  "train_class_distribution": {
+    "NO (0)": 31,
+    "YES (1)": 216
+  },
+  "test_class_distribution": {
+    "NO (0)": 8,
+    "YES (1)": 54
+  },
+  "train_class_percentage": {
+    "NO (0)": 12.55,
+    "YES (1)": 87.45
+  },
+  "test_class_percentage": {
+    "NO (0)": 12.9,
+    "YES (1)": 87.1
+  },
+  "split_strategy": "group_aware_stratified_split (StratifiedGroupKFold on 15-feature duplicate groups)",
+  "duplicate_groups_used": true,
+  "total_feature_groups": 275,
+  "duplicate_feature_vectors": 34,
+  "exact_duplicate_rows": 33,
+  "conflicting_feature_vectors": 1,
+  "conflicting_pair_allocation": "train (both rows 257 and 272 allocated to train; 0 in test)",
+  "scaler_fitted_on": "X_train only",
+  "scaler_mean_age": 62.85425101214575,
+  "scaler_scale_age": 8.336241795499054,
+  "sklearn_version": "1.8.0",
+  "leakage_protection": "StandardScaler fitted strictly on X_train; binary features passed through unscaled; group-aware split guarantees no duplicate feature vectors cross the train/test boundary"
+}

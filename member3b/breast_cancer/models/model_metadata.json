@@ -1,0 +1,115 @@
+{
+  "disease_name": "Breast Cancer Prediction",
+  "module_owner": "Member 3B",
+  "target_column": "diagnosis",
+  "target_mapping": {
+    "B": 0,
+    "M": 1
+  },
+  "positive_class": "1 (Malignant)",
+  "negative_class": "0 (Benign)",
+  "feature_count": 30,
+  "feature_names": [
+    "radius_mean",
+    "texture_mean",
+    "perimeter_mean",
+    "area_mean",
+    "smoothness_mean",
+    "compactness_mean",
+    "concavity_mean",
+    "concave points_mean",
+    "symmetry_mean",
+    "fractal_dimension_mean",
+    "radius_se",
+    "texture_se",
+    "perimeter_se",
+    "area_se",
+    "smoothness_se",
+    "compactness_se",
+    "concavity_se",
+    "concave points_se",
+    "symmetry_se",
+    "fractal_dimension_se",
+    "radius_worst",
+    "texture_worst",
+    "perimeter_worst",
+    "area_worst",
+    "smoothness_worst",
+    "compactness_worst",
+    "concavity_worst",
+    "concave points_worst",
+    "symmetry_worst",
+    "fractal_dimension_worst"
+  ],
+  "preprocessing_method": "StandardScaler (fitted strictly on X_train)",
+  "random_state": 42,
+  "train_test_split": {
+    "train_ratio": 0.8,
+    "test_ratio": 0.2
+  },
+  "cross_validation": {
+    "method": "StratifiedKFold",
+    "folds": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "primary_selection_metric": "cv_roc_auc_mean",
+  "models_evaluated": [
+    "Logistic Regression",
+    "Support Vector Machine",
+    "Random Forest",
+    "Gradient Boosting",
+    "Extra Trees"
+  ],
+  "xgboost_status": "Not included; no verified compatible wheel available for Python 3.14 in this environment.",
+  "hyperparameter_search_method": "GridSearchCV(scoring='roc_auc', cv=5)",
+  "selected_model_name": "Logistic Regression",
+  "selected_hyperparameters": {
+    "C": 1.0,
+    "penalty": "l2",
+    "solver": "lbfgs"
+  },
+  "cross_validation_metrics_selected": {
+    "cv_accuracy_mean": 0.9736263736263737,
+    "cv_accuracy_std": 0.014906219743132443,
+    "cv_precision_mean": 0.9771428571428572,
+    "cv_precision_std": 0.027994168488950616,
+    "cv_recall_mean": 0.9529411764705882,
+    "cv_recall_std": 0.03989605872426629,
+    "cv_f1_mean": 0.9640480895915677,
+    "cv_f1_std": 0.020700447685741707,
+    "cv_roc_auc_mean": 0.9957688338493291,
+    "cv_roc_auc_std": 0.004665698474904977
+  },
+  "final_test_metrics_selected": {
+    "accuracy": 0.9649122807017544,
+    "precision": 0.975,
+    "recall_sensitivity": 0.9285714285714286,
+    "specificity": 0.9861111111111112,
+    "f1": 0.9512195121951219,
+    "roc_auc": 0.996031746031746,
+    "pr_auc": 0.9942
+  },
+  "confusion_matrix_selected": {
+    "matrix": [
+      [
+        71,
+        1
+      ],
+      [
+        3,
+        39
+      ]
+    ],
+    "tn": 71,
+    "fp": 1,
+    "fn": 3,
+    "tp": 39
+  },
+  "decision_threshold": 0.5,
+  "threshold_policy": "Default classifier threshold (0.5); no clinical calibration applied.",
+  "model_artifact_path": "P:\\AI_Multi_Disease_Risk_Screening_and_Prediction_System\\member3b\\breast_cancer\\models\\breast_cancer_model.joblib",
+  "preprocessor_artifact_path": "P:\\AI_Multi_Disease_Risk_Screening_and_Prediction_System\\member3b\\breast_cancer\\models\\breast_cancer_preprocessor.joblib",
+  "training_timestamp": "2026-09-24T20:41:54.523965",
+  "disclaimer": "This model is developed for an academic machine learning research project. It is NOT a clinically validated diagnostic tool and must not be used as a substitute for professional medical diagnosis or clinical decision making."
+}

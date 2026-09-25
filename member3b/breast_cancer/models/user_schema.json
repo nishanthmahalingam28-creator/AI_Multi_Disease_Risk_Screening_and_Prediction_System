@@ -1,0 +1,194 @@
+{
+  "title": "Breast Cancer Screening - User Input Schema",
+  "description": "User-facing input specification for the Wisconsin Diagnostic Breast Cancer 30 morphometric cell nucleus features.",
+  "type": "object",
+  "total_features": 30,
+  "feature_groups": {
+    "mean_features": [
+      {
+        "name": "radius_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean distance from center to points on the cell nucleus perimeter"
+      },
+      {
+        "name": "texture_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean of gray-scale values (standard deviation of gray-scale)"
+      },
+      {
+        "name": "perimeter_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean cell nucleus perimeter measurement"
+      },
+      {
+        "name": "area_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean cell nucleus area measurement"
+      },
+      {
+        "name": "smoothness_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean local variation in cell nucleus radius lengths"
+      },
+      {
+        "name": "compactness_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean compactness: perimeter^2 / area - 1.0"
+      },
+      {
+        "name": "concavity_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean severity of concave portions of the nucleus contour"
+      },
+      {
+        "name": "concave points_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean number of concave portions of the nucleus contour"
+      },
+      {
+        "name": "symmetry_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean symmetry of the cell nucleus"
+      },
+      {
+        "name": "fractal_dimension_mean",
+        "type": "number",
+        "required": true,
+        "description": "Mean coastline approximation: fractal dimension - 1"
+      }
+    ],
+    "se_features": [
+      {
+        "name": "radius_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for the radius of the cell nucleus"
+      },
+      {
+        "name": "texture_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for gray-scale value variation"
+      },
+      {
+        "name": "perimeter_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for the cell nucleus perimeter"
+      },
+      {
+        "name": "area_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for the cell nucleus area"
+      },
+      {
+        "name": "smoothness_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for local variation in radius lengths"
+      },
+      {
+        "name": "compactness_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for compactness"
+      },
+      {
+        "name": "concavity_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for concavity"
+      },
+      {
+        "name": "concave points_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for concave portions count"
+      },
+      {
+        "name": "symmetry_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for cell nucleus symmetry"
+      },
+      {
+        "name": "fractal_dimension_se",
+        "type": "number",
+        "required": true,
+        "description": "Standard error for fractal dimension"
+      }
+    ],
+    "worst_features": [
+      {
+        "name": "radius_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) cell nucleus radius measurement"
+      },
+      {
+        "name": "texture_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) gray-scale value variation"
+      },
+      {
+        "name": "perimeter_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) cell nucleus perimeter measurement"
+      },
+      {
+        "name": "area_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) cell nucleus area measurement"
+      },
+      {
+        "name": "smoothness_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) local variation in radius lengths"
+      },
+      {
+        "name": "compactness_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) compactness measurement"
+      },
+      {
+        "name": "concavity_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) severity of concave contour portions"
+      },
+      {
+        "name": "concave points_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) number of concave contour portions"
+      },
+      {
+        "name": "symmetry_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) symmetry measurement"
+      },
+      {
+        "name": "fractal_dimension_worst",
+        "type": "number",
+        "required": true,
+        "description": "Largest (worst) fractal dimension approximation"
+      }
+    ]
+  }
+}
