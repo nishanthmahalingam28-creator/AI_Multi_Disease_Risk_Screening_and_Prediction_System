@@ -7,7 +7,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, balanced_accuracy_score, classification_report, confusion_matrix, f1_score, precision_score, recall_score, roc_auc_score
+from sklearn.metrics import accuracy_score, average_precision_score, balanced_accuracy_score, classification_report, confusion_matrix, f1_score, precision_score, recall_score, roc_auc_score
 from sklearn.model_selection import GridSearchCV, StratifiedGroupKFold, cross_validate
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
@@ -71,7 +71,7 @@ def main():
     X=df.drop(columns=[TARGET,ID_COL,"_subject_id"]); y=df[TARGET].astype(int); groups=df["_subject_id"].astype(str)
     Xtr,Xte,ytr,yte,gtr=holdout(X,y,groups); comparison=compare(Xtr,ytr,gtr); best_name,cv_auc,model,params=tune(Xtr,ytr,gtr,comparison.head(2)["model"].tolist()); model.fit(Xtr,ytr)
     pred=model.predict(Xte); prob=model.predict_proba(Xte)[:,1]
-    metrics={"accuracy":accuracy_score(yte,pred),"balanced_accuracy":balanced_accuracy_score(yte,pred),"precision":precision_score(yte,pred,zero_division=0),"recall":recall_score(yte,pred,zero_division=0),"f1":f1_score(yte,pred,zero_division=0),"roc_auc":roc_auc_score(yte,prob),"confusion_matrix":confusion_matrix(yte,pred).tolist(),"classification_report":classification_report(yte,pred,output_dict=True,zero_division=0)}
+    metrics={"accuracy":accuracy_score(yte,pred),"balanced_accuracy":balanced_accuracy_score(yte,pred),"precision":precision_score(yte,pred,zero_division=0),"recall":recall_score(yte,pred,zero_division=0),"f1":f1_score(yte,pred,zero_division=0),"roc_auc":roc_auc_score(yte,prob),"pr_auc":average_precision_score(yte,prob),"confusion_matrix":confusion_matrix(yte,pred).tolist(),"classification_report":classification_report(yte,pred,output_dict=True,zero_division=0)}
     json.dump(metrics,open(REPORTS/"evaluation_report.json","w"),indent=2,default=float)
     joblib.dump(model,OUT/"parkinsons_model.joblib"); joblib.dump(model.named_steps["preprocessor"],OUT/"parkinsons_preprocessor.joblib")
     features=X.columns.tolist(); mapping={"0":"Healthy","1":"Parkinson's disease screening positive"}; schema={"disease":"parkinsons","target":TARGET,"target_mapping":mapping,"features":[{"name":c,"dtype":str(X[c].dtype)} for c in features],"input_note":"Specialized voice measurements may require an appropriate measurement system.","disclaimer":"Screening/risk prediction only; not a medical diagnosis."}
@@ -81,6 +81,4 @@ def main():
     json.dump(metadata,open(OUT/"model_metadata.json","w"),indent=2,default=str)
 
 if __name__=="__main__": main()
-
-
 

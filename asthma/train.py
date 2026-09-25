@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 import json
 from datetime import date
 from pathlib import Path
@@ -8,7 +8,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, balanced_accuracy_score, classification_report, confusion_matrix, f1_score, precision_score, recall_score, roc_auc_score
+from sklearn.metrics import accuracy_score, average_precision_score, balanced_accuracy_score, classification_report, confusion_matrix, f1_score, precision_score, recall_score, roc_auc_score
 from sklearn.model_selection import GridSearchCV, StratifiedKFold, cross_validate, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -72,7 +72,7 @@ def main():
     Xtr,Xte,ytr,yte=train_test_split(X,y,test_size=.2,stratify=y,random_state=RANDOM_STATE)
     comparison=compare(Xtr,ytr); best_name,cv_auc,model,params=tune(Xtr,ytr,comparison.head(2)["model"].tolist()); model.fit(Xtr,ytr)
     pred=model.predict(Xte); prob=model.predict_proba(Xte)[:,1]
-    metrics={"accuracy":accuracy_score(yte,pred),"balanced_accuracy":balanced_accuracy_score(yte,pred),"precision":precision_score(yte,pred,zero_division=0),"recall":recall_score(yte,pred,zero_division=0),"f1":f1_score(yte,pred,zero_division=0),"roc_auc":roc_auc_score(yte,prob),"confusion_matrix":confusion_matrix(yte,pred).tolist(),"classification_report":classification_report(yte,pred,output_dict=True,zero_division=0)}
+    metrics={"accuracy":accuracy_score(yte,pred),"balanced_accuracy":balanced_accuracy_score(yte,pred),"precision":precision_score(yte,pred,zero_division=0),"recall":recall_score(yte,pred,zero_division=0),"f1":f1_score(yte,pred,zero_division=0),"roc_auc":roc_auc_score(yte,prob),"pr_auc":average_precision_score(yte,prob),"confusion_matrix":confusion_matrix(yte,pred).tolist(),"classification_report":classification_report(yte,pred,output_dict=True,zero_division=0)}
     json.dump(metrics,open(REPORTS/"evaluation_report.json","w"),indent=2,default=float)
     joblib.dump(model,OUT/"asthma_model.joblib"); joblib.dump(model.named_steps["preprocessor"],OUT/"asthma_preprocessor.joblib")
     features=X.columns.tolist(); mapping={"0":"No asthma","1":"Has asthma"}
@@ -83,6 +83,4 @@ def main():
     json.dump(metadata,open(OUT/"model_metadata.json","w"),indent=2,default=str)
 
 if __name__=="__main__": main()
-
-
 
