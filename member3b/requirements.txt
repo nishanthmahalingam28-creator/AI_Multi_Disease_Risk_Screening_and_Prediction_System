@@ -1,0 +1,16 @@
+# Member 3B Unified Cancer Prediction Backend Dependencies
+# Runtime verified on Python 3.14.6 (Supports Python 3.10+)
+
+Flask>=3.0.0,<4.0.0
+pandas>=2.0.0,<4.0.0
+numpy>=1.26.0,<3.0.0
+scikit-learn>=1.4.0,<2.0.0
+joblib>=1.3.0,<2.0.0
+scipy>=1.11.0,<2.0.0
+
+# Production WSGI server (Linux / container deployment)
+gunicorn>=21.2.0,<24.0.0
+
+# Testing and validation
+pytest>=8.0.0,<10.0.0
+

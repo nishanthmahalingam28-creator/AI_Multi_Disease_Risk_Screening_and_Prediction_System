@@ -1,0 +1,76 @@
+{
+  "disease": "Lung Cancer Prediction",
+  "model_type": "LogisticRegression",
+  "model_version": "1.0.0",
+  "feature_count": 15,
+  "feature_names": [
+    "gender",
+    "age",
+    "smoking",
+    "yellow_fingers",
+    "anxiety",
+    "peer_pressure",
+    "chronic_disease",
+    "fatigue",
+    "allergy",
+    "wheezing",
+    "alcohol_consuming",
+    "coughing",
+    "shortness_of_breath",
+    "swallowing_difficulty",
+    "chest_pain"
+  ],
+  "target_mapping": {
+    "NO": 0,
+    "YES": 1
+  },
+  "gender_mapping": {
+    "FEMALE": 0,
+    "MALE": 1
+  },
+  "preprocessor_artifact": "lung_cancer_preprocessor.joblib",
+  "training_row_count": 247,
+  "test_row_count": 62,
+  "random_state": 42,
+  "cross_validation_method": "StratifiedKFold (5-fold, shuffle=True, random_state=42)",
+  "selection_metric": "cv_roc_auc_mean",
+  "selected_hyperparameters": {
+    "C": 0.1
+  },
+  "cross_validation_metrics_selected": {
+    "cv_roc_auc_mean": 0.9441155743481324,
+    "cv_roc_auc_std": 0.01744360438601997,
+    "cv_pr_auc_mean": 0.9919508825066471,
+    "cv_pr_auc_std": 0.002585124951398702,
+    "cv_balanced_accuracy_mean": 0.8640415785764624,
+    "cv_balanced_accuracy_std": 0.03328726365668373,
+    "cv_recall_mean": 0.8614164904862578,
+    "cv_recall_std": 0.04001919272797698,
+    "cv_specificity_mean": 0.8666666666666668,
+    "cv_specificity_std": 0.06666666666666665,
+    "cv_precision_mean": 0.9791880341880341,
+    "cv_f1_mean": 0.915961995558647,
+    "cv_accuracy_mean": 0.8626122448979592
+  },
+  "final_evaluation_metrics": {
+    "model": "Logistic Regression",
+    "threshold": 0.5,
+    "accuracy": 0.8870967741935484,
+    "balanced_accuracy": 0.9351851851851851,
+    "precision": 1.0,
+    "recall": 0.8703703703703703,
+    "specificity": 1.0,
+    "f1": 0.9306930693069307,
+    "roc_auc": 0.9837962962962963,
+    "pr_auc": 0.9978572151386358,
+    "confusion_matrix": {
+      "tn": 8,
+      "fp": 0,
+      "fn": 7,
+      "tp": 47
+    }
+  },
+  "training_dataset_sha256": "b5df44c7a33d095457bd67d59806ce96797d2aef591781af6ef4f1d93c5ac3d2",
+  "training_timestamp": "2026-09-24T21:41:45.474983",
+  "disclaimer": "This model is an academic/research screening prediction model trained on the supplied survey dataset. It is not a medical diagnosis and has not been clinically validated or approved for clinical use."
+}

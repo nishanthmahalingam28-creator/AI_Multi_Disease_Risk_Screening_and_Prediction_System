@@ -1,0 +1,83 @@
+{
+  "disease_name": "Breast Cancer Prediction",
+  "dataset_path": "dataset/breast.csv",
+  "target_column": "diagnosis",
+  "target_mapping": {
+    "B": 0,
+    "M": 1
+  },
+  "inverse_target_mapping": {
+    "0": "B",
+    "1": "M"
+  },
+  "dropped_columns": [
+    "id",
+    "Unnamed: 32"
+  ],
+  "feature_names": [
+    "radius_mean",
+    "texture_mean",
+    "perimeter_mean",
+    "area_mean",
+    "smoothness_mean",
+    "compactness_mean",
+    "concavity_mean",
+    "concave points_mean",
+    "symmetry_mean",
+    "fractal_dimension_mean",
+    "radius_se",
+    "texture_se",
+    "perimeter_se",
+    "area_se",
+    "smoothness_se",
+    "compactness_se",
+    "concavity_se",
+    "concave points_se",
+    "symmetry_se",
+    "fractal_dimension_se",
+    "radius_worst",
+    "texture_worst",
+    "perimeter_worst",
+    "area_worst",
+    "smoothness_worst",
+    "compactness_worst",
+    "concavity_worst",
+    "concave points_worst",
+    "symmetry_worst",
+    "fractal_dimension_worst"
+  ],
+  "feature_count": 30,
+  "scaler_type": "StandardScaler",
+  "train_test_split_ratio": {
+    "train": 0.8,
+    "test": 0.2
+  },
+  "random_state": 42,
+  "total_samples": 569,
+  "train_samples": 455,
+  "test_samples": 114,
+  "class_distribution_total": {
+    "B (0)": 357,
+    "M (1)": 212
+  },
+  "class_distribution_train": {
+    "B (0)": 285,
+    "M (1)": 170
+  },
+  "class_distribution_test": {
+    "B (0)": 72,
+    "M (1)": 42
+  },
+  "class_percentage_train": {
+    "B (0)": 62.64,
+    "M (1)": 37.36
+  },
+  "class_percentage_test": {
+    "B (0)": 63.16,
+    "M (1)": 36.84
+  },
+  "leakage_protection": "Scaler fitted exclusively on X_train; X_test transformed using fitted scaler.",
+  "outlier_policy": "Preserved without truncation/clipping to maintain diagnostic signal of aggressive tumors.",
+  "multicollinearity_policy": "All 30 continuous features preserved; algorithm-level regularization/tree-handling applied in Step 4.",
+  "class_imbalance_policy": "Stratified splitting used; no SMOTE or artificial resampling applied."
+}
