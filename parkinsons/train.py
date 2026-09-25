@@ -12,6 +12,7 @@ from sklearn.model_selection import GridSearchCV, StratifiedGroupKFold, cross_va
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
+from sklearn.calibration import CalibratedClassifierCV
 
 ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"dataset"/"Parkinsons_Disease_Dataset.xlsx"; OUT=ROOT/"parkinsons"; REPORTS=OUT/"reports"; RANDOM_STATE=42; TARGET="status"; ID_COL="name"
 
@@ -39,7 +40,7 @@ def prep(X):
 
 def compare(X,y,g):
     cv=StratifiedGroupKFold(5,shuffle=True,random_state=RANDOM_STATE)
-    models={"logistic_regression":LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE),"svm":SVC(probability=True,class_weight="balanced",random_state=RANDOM_STATE),"random_forest":RandomForestClassifier(n_estimators=300,class_weight="balanced",random_state=RANDOM_STATE,n_jobs=-1),"gradient_boosting":GradientBoostingClassifier(random_state=RANDOM_STATE)}
+    models={"logistic_regression":LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE),"svm":CalibratedClassifierCV(SVC(class_weight="balanced",random_state=RANDOM_STATE),method="sigmoid",cv=5,ensemble=False),"random_forest":RandomForestClassifier(n_estimators=300,class_weight="balanced",random_state=RANDOM_STATE,n_jobs=-1),"gradient_boosting":GradientBoostingClassifier(random_state=RANDOM_STATE)}
     rows=[]
     for name,m in models.items():
         pipe=Pipeline([("preprocessor",prep(X)),("model",m)])
@@ -56,7 +57,7 @@ def tune(X,y,g,names):
     cv=StratifiedGroupKFold(5,shuffle=True,random_state=RANDOM_STATE); out=[]
     for name in names:
         if name=="random_forest": est=RandomForestClassifier(class_weight="balanced",random_state=RANDOM_STATE,n_jobs=-1); grid={"model__n_estimators":[200,400],"model__max_depth":[None,8,16],"model__min_samples_split":[2,5]}
-        elif name=="svm": est=SVC(probability=True,class_weight="balanced",random_state=RANDOM_STATE); grid={"model__C":[.1,1,10],"model__kernel":["rbf","linear"],"model__gamma":["scale","auto"]}
+        elif name=="svm": est=CalibratedClassifierCV(SVC(class_weight="balanced",random_state=RANDOM_STATE),method="sigmoid",cv=5,ensemble=False); grid={"model__estimator__C":[.1,1,10],"model__estimator__kernel":["rbf","linear"],"model__estimator__gamma":["scale","auto"]}
         elif name=="logistic_regression": est=LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE); grid={"model__C":[.1,1,10],"model__solver":["lbfgs","liblinear"]}
         else: est=GradientBoostingClassifier(random_state=RANDOM_STATE); grid={"model__n_estimators":[100,200],"model__learning_rate":[.03,.1],"model__max_depth":[2,3]}
         s=GridSearchCV(Pipeline([("preprocessor",prep(X)),("model",est)]),grid,scoring="roc_auc",cv=cv,n_jobs=-1,refit=True); s.fit(X,y,groups=g); out.append((name,s.best_score_,s.best_estimator_,s.best_params_))
@@ -68,7 +69,7 @@ def main():
     pd.DataFrame({"dtype":df.dtypes.astype(str),"missing":df.isna().sum(),"missing_pct":(df.isna().mean()*100).round(3),"n_unique":df.nunique(dropna=True)}).to_csv(REPORTS/"data_profile.csv")
     json.dump(df[TARGET].value_counts().sort_index().to_dict(),open(REPORTS/"class_distribution.json","w"),indent=2)
     X=df.drop(columns=[TARGET,ID_COL,"_subject_id"]); y=df[TARGET].astype(int); groups=df["_subject_id"].astype(str)
-    comparison=compare(X,y,groups); Xtr,Xte,ytr,yte,gtr=holdout(X,y,groups); best_name,cv_auc,model,params=tune(Xtr,ytr,gtr,comparison.head(2)["model"].tolist()); model.fit(Xtr,ytr)
+    Xtr,Xte,ytr,yte,gtr=holdout(X,y,groups); comparison=compare(Xtr,ytr,gtr); best_name,cv_auc,model,params=tune(Xtr,ytr,gtr,comparison.head(2)["model"].tolist()); model.fit(Xtr,ytr)
     pred=model.predict(Xte); prob=model.predict_proba(Xte)[:,1]
     metrics={"accuracy":accuracy_score(yte,pred),"balanced_accuracy":balanced_accuracy_score(yte,pred),"precision":precision_score(yte,pred,zero_division=0),"recall":recall_score(yte,pred,zero_division=0),"f1":f1_score(yte,pred,zero_division=0),"roc_auc":roc_auc_score(yte,prob),"confusion_matrix":confusion_matrix(yte,pred).tolist(),"classification_report":classification_report(yte,pred,output_dict=True,zero_division=0)}
     json.dump(metrics,open(REPORTS/"evaluation_report.json","w"),indent=2,default=float)
@@ -80,3 +81,6 @@ def main():
     json.dump(metadata,open(OUT/"model_metadata.json","w"),indent=2,default=str)
 
 if __name__=="__main__": main()
+
+
+

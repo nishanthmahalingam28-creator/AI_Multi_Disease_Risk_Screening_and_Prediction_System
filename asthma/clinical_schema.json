@@ -1,0 +1,67 @@
+{
+  "disease": "asthma",
+  "target": "Has_Asthma",
+  "target_mapping": {
+    "0": "No asthma",
+    "1": "Has asthma"
+  },
+  "features": [
+    {
+      "name": "Age",
+      "dtype": "int64"
+    },
+    {
+      "name": "Gender",
+      "dtype": "str"
+    },
+    {
+      "name": "BMI",
+      "dtype": "float64"
+    },
+    {
+      "name": "Smoking_Status",
+      "dtype": "str"
+    },
+    {
+      "name": "Family_History",
+      "dtype": "int64"
+    },
+    {
+      "name": "Allergies",
+      "dtype": "str"
+    },
+    {
+      "name": "Air_Pollution_Level",
+      "dtype": "str"
+    },
+    {
+      "name": "Physical_Activity_Level",
+      "dtype": "str"
+    },
+    {
+      "name": "Occupation_Type",
+      "dtype": "str"
+    },
+    {
+      "name": "Comorbidities",
+      "dtype": "str"
+    },
+    {
+      "name": "Medication_Adherence",
+      "dtype": "float64"
+    },
+    {
+      "name": "Number_of_ER_Visits",
+      "dtype": "int64"
+    },
+    {
+      "name": "Peak_Expiratory_Flow",
+      "dtype": "float64"
+    },
+    {
+      "name": "FeNO_Level",
+      "dtype": "float64"
+    }
+  ],
+  "note": "Screening/risk prediction only; not a medical diagnosis."
+}

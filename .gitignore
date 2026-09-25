@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.joblib
+.ipynb_checkpoints/
+
+# Generated ML reports and metadata
+asthma/reports/
+parkinsons/reports/
+
+# Local Python environments
+.venv/
+venv/
+env/

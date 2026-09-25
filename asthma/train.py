@@ -1,8 +1,9 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 import json
 from datetime import date
 from pathlib import Path
 import joblib, matplotlib.pyplot as plt, pandas as pd, seaborn as sns
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.impute import SimpleImputer
@@ -46,7 +47,7 @@ def build_pipeline(X):
 
 def compare(X,y):
     cv=StratifiedKFold(5,shuffle=True,random_state=RANDOM_STATE)
-    models={"logistic_regression":LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE),"svm":SVC(probability=True,class_weight="balanced",random_state=RANDOM_STATE),"random_forest":RandomForestClassifier(n_estimators=300,class_weight="balanced",random_state=RANDOM_STATE,n_jobs=-1),"gradient_boosting":GradientBoostingClassifier(random_state=RANDOM_STATE)}
+    models={"logistic_regression":LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE),"svm":CalibratedClassifierCV(SVC(class_weight="balanced",random_state=RANDOM_STATE),method="sigmoid",cv=5,ensemble=False),"random_forest":RandomForestClassifier(n_estimators=300,class_weight="balanced",random_state=RANDOM_STATE,n_jobs=-1),"gradient_boosting":GradientBoostingClassifier(random_state=RANDOM_STATE)}
     rows=[]
     for name,m in models.items():
         pipe=Pipeline([("preprocessor",build_pipeline(X)),("model",m)])
@@ -58,7 +59,7 @@ def tune(X,y,names):
     cv=StratifiedKFold(5,shuffle=True,random_state=RANDOM_STATE); out=[]
     for name in names:
         if name=="random_forest": est=RandomForestClassifier(class_weight="balanced",random_state=RANDOM_STATE,n_jobs=-1); grid={"model__n_estimators":[200,400],"model__max_depth":[None,8,16],"model__min_samples_split":[2,5]}
-        elif name=="svm": est=SVC(probability=True,class_weight="balanced",random_state=RANDOM_STATE); grid={"model__C":[0.1,1,10],"model__kernel":["rbf","linear"],"model__gamma":["scale","auto"]}
+        elif name=="svm": est=CalibratedClassifierCV(SVC(class_weight="balanced",random_state=RANDOM_STATE),method="sigmoid",cv=5,ensemble=False); grid={"model__estimator__C":[0.1,1,10],"model__estimator__kernel":["rbf","linear"],"model__estimator__gamma":["scale","auto"]}
         elif name=="logistic_regression": est=LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE); grid={"model__C":[0.1,1,10],"model__solver":["lbfgs","liblinear"]}
         else: est=GradientBoostingClassifier(random_state=RANDOM_STATE); grid={"model__n_estimators":[100,200],"model__learning_rate":[0.03,0.1],"model__max_depth":[2,3]}
         search=GridSearchCV(Pipeline([("preprocessor",build_pipeline(X)),("model",est)]),grid,scoring="roc_auc",cv=cv,n_jobs=-1,refit=True); search.fit(X,y); out.append((name,search.best_score_,search.best_estimator_,search.best_params_))
@@ -82,3 +83,6 @@ def main():
     json.dump(metadata,open(OUT/"model_metadata.json","w"),indent=2,default=str)
 
 if __name__=="__main__": main()
+
+
+
