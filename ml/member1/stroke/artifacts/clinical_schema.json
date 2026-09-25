@@ -1,0 +1,30 @@
+{
+  "disease": "stroke",
+  "module": "member1",
+  "screening_only": true,
+  "medical_diagnosis": false,
+  "required": [
+    "gender",
+    "age",
+    "hypertension",
+    "heart_disease",
+    "ever_married",
+    "work_type",
+    "Residence_type",
+    "avg_glucose_level",
+    "bmi",
+    "smoking_status"
+  ],
+  "properties": {
+    "gender": {"type": "string"},
+    "age": {"type": "number"},
+    "hypertension": {"type": "number"},
+    "heart_disease": {"type": "number"},
+    "ever_married": {"type": "string"},
+    "work_type": {"type": "string"},
+    "Residence_type": {"type": "string"},
+    "avg_glucose_level": {"type": "number"},
+    "bmi": {"type": "number"},
+    "smoking_status": {"type": "string"}
+  }
+}
