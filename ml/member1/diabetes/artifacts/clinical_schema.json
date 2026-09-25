@@ -1,0 +1,26 @@
+{
+  "disease": "diabetes",
+  "module": "member1",
+  "screening_only": true,
+  "medical_diagnosis": false,
+  "required": [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age"
+  ],
+  "properties": {
+    "Pregnancies": {"type": "number"},
+    "Glucose": {"type": "number"},
+    "BloodPressure": {"type": "number"},
+    "SkinThickness": {"type": "number"},
+    "Insulin": {"type": "number"},
+    "BMI": {"type": "number"},
+    "DiabetesPedigreeFunction": {"type": "number"},
+    "Age": {"type": "number"}
+  }
+}

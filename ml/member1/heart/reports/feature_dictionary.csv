@@ -1,0 +1,15 @@
+feature_name,original_data_type,logical_type,role,unique_values_count,missing_count,cleaning_action,is_excluded,reason
+Age,int64,Numerical Discrete,predictor,41,0,None (Type validated),False,Patient age in years (range 29-77). Key demographic cardiovascular risk factor.
+Sex,int64,Categorical Binary,predictor,2,0,None (Type validated),False,"Biological sex (1=Male, 0=Female). Significant differential baseline risk profile."
+Chest pain type,int64,Categorical Nominal,predictor,4,0,Retained as discrete categorical scale,False,"Clinical chest pain classification (1=typical angina, 2=atypical angina, 3=non-anginal pain, 4=asymptomatic). To be encoded in pipeline."
+BP,int64,Numerical Continuous,predictor,47,0,None (Type validated),False,Resting blood pressure in mm Hg (range 94-200). Hypertension risk determinant.
+Cholesterol,int64,Numerical Continuous,predictor,144,0,None (Type validated),False,Serum cholesterol in mg/dl (range 126-564). Atherosclerosis risk biomarker.
+FBS over 120,int64,Categorical Binary,predictor,2,0,None (Type validated),False,"Fasting blood sugar > 120 mg/dl indicator (1=True, 0=False). Correlates with pre-diabetes/diabetes comorbidity."
+EKG results,int64,Categorical Nominal,predictor,3,0,Retained as discrete categorical scale,False,"Resting electrocardiographic results (0=normal, 1=ST-T abnormality [rare: 2 cases], 2=left ventricular hypertrophy)."
+Max HR,int64,Numerical Continuous,predictor,90,0,None (Type validated),False,Maximum heart rate achieved during exercise stress test (range 71-202).
+Exercise angina,int64,Categorical Binary,predictor,2,0,None (Type validated),False,"Exercise-induced angina (1=Yes, 0=No). Indicator of myocardial ischemia during physical exertion."
+ST depression,float64,Numerical Continuous,predictor,39,0,None (Type validated),False,ST depression induced by exercise relative to rest (range 0.0-6.2). Ischemic stress indicator.
+Slope of ST,int64,Categorical Ordinal,predictor,3,0,Retained as discrete ordinal scale,False,"Slope of the peak exercise ST segment (1=upsloping, 2=flat, 3=downsloping)."
+Number of vessels fluro,int64,Numerical Discrete,predictor,4,0,Retained as discrete clinical count,False,Number of major coronary vessels (0-3) colored by fluoroscopy. Direct measure of anatomical occlusion.
+Thallium,int64,Categorical Nominal,predictor,3,0,Retained as discrete categorical code,False,"Thallium scintigraphy stress test defect code (3=normal, 6=fixed defect [14 cases], 7=reversible defect)."
+Heart Disease,object,Target Binary,target,2,0,"Mapped to binary integer: Absence -> 0, Presence -> 1",False,"Screening target outcome. Absence=150 (55.56%), Presence=120 (44.44%)."

@@ -1,25 +1,63 @@
-# Python byte-compiled files and caches
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environments
-.venv/
-venv/
-ENV/
-env/
+# C extensions
+*.so
 
-# Environment configurations and local overrides
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
 .env
 .env.local
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Testing caches
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating System temporary files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs and test caches
+*.log
 .pytest_cache/
 .coverage
 htmlcov/
 
-# IDE and OS files
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
+# NOTE:
+# - Shared raw datasets in 'dataset/' are NOT ignored (version controlled for multi-disease system).
+# - Serialized final models and preprocessors in 'ml/member1/*/models/' will be preserved for backend handover.

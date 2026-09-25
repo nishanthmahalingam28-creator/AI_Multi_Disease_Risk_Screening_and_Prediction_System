@@ -1,0 +1,5 @@
+model,best_cv_score,best_params
+Logistic Regression,0.8443867663344408,"{'model__C': 0.1, 'model__solver': 'lbfgs'}"
+SVM,0.8447383720930233,"{'model__C': 10, 'model__gamma': 'scale', 'model__kernel': 'linear'}"
+Random Forest,0.8392926356589147,"{'model__max_depth': 5, 'model__min_samples_leaf': 4, 'model__n_estimators': 200}"
+Gradient Boosting,0.8273504983388704,"{'model__learning_rate': 0.03, 'model__max_depth': 2, 'model__n_estimators': 100}"

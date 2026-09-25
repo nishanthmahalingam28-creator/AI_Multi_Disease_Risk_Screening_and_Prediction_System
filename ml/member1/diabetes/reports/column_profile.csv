@@ -1,0 +1,10 @@
+column_name,dtype,is_target,unique_values_count,missing_count,missing_pct,zero_count,zero_pct,min,mean,median,std,max
+Pregnancies,int64,False,17,0,0.0,111,14.4531,0.0,3.8451,3.0,3.3696,17.0
+Glucose,int64,False,136,0,0.0,5,0.651,0.0,120.8945,117.0,31.9726,199.0
+BloodPressure,int64,False,47,0,0.0,35,4.5573,0.0,69.1055,72.0,19.3558,122.0
+SkinThickness,int64,False,51,0,0.0,227,29.5573,0.0,20.5365,23.0,15.9522,99.0
+Insulin,int64,False,186,0,0.0,374,48.6979,0.0,79.7995,30.5,115.244,846.0
+BMI,float64,False,248,0,0.0,11,1.4323,0.0,31.9926,32.0,7.8842,67.1
+DiabetesPedigreeFunction,float64,False,517,0,0.0,0,0.0,0.078,0.4719,0.3725,0.3313,2.42
+Age,int64,False,52,0,0.0,0,0.0,21.0,33.2409,29.0,11.7602,81.0
+Outcome,int64,True,2,0,0.0,500,65.1042,0.0,0.349,0.0,0.477,1.0

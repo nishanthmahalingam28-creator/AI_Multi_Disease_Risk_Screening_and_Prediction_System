@@ -1,0 +1,40 @@
+{
+  "disease": "heart",
+  "target_column": "Heart Disease",
+  "positive_class": 1,
+  "training_rows": 270,
+  "feature_columns": [
+    "Age",
+    "Sex",
+    "Chest pain type",
+    "BP",
+    "Cholesterol",
+    "FBS over 120",
+    "EKG results",
+    "Max HR",
+    "Exercise angina",
+    "ST depression",
+    "Slope of ST",
+    "Number of vessels fluro",
+    "Thallium"
+  ],
+  "model_class": "LogisticRegression",
+  "model_parameters": {
+    "C": 0.1,
+    "class_weight": null,
+    "dual": false,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "l1_ratio": 0.0,
+    "max_iter": 3000,
+    "n_jobs": null,
+    "penalty": "deprecated",
+    "random_state": 42,
+    "solver": "lbfgs",
+    "tol": 0.0001,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "screening_only": true,
+  "medical_diagnosis": false
+}

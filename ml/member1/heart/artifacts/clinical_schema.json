@@ -1,0 +1,36 @@
+{
+  "disease": "heart",
+  "module": "member1",
+  "screening_only": true,
+  "medical_diagnosis": false,
+  "required": [
+    "Age",
+    "Sex",
+    "Chest pain type",
+    "BP",
+    "Cholesterol",
+    "FBS over 120",
+    "EKG results",
+    "Max HR",
+    "Exercise angina",
+    "ST depression",
+    "Slope of ST",
+    "Number of vessels fluro",
+    "Thallium"
+  ],
+  "properties": {
+    "Age": {"type": "number"},
+    "Sex": {"type": "number"},
+    "Chest pain type": {"type": "number"},
+    "BP": {"type": "number"},
+    "Cholesterol": {"type": "number"},
+    "FBS over 120": {"type": "number"},
+    "EKG results": {"type": "number"},
+    "Max HR": {"type": "number"},
+    "Exercise angina": {"type": "number"},
+    "ST depression": {"type": "number"},
+    "Slope of ST": {"type": "number"},
+    "Number of vessels fluro": {"type": "number"},
+    "Thallium": {"type": "number"}
+  }
+}

@@ -1,0 +1,15 @@
+column_name,dtype,is_target,unique_values_count,missing_count,missing_pct,zero_count,zero_pct,min,mean,median,std,max
+Age,int64,False,41,0,0.0,0,0.0,29.0,54.4333,55.0,9.1091,77.0
+Sex,int64,False,2,0,0.0,87,32.2222,0.0,0.6778,1.0,0.4682,1.0
+Chest pain type,int64,False,4,0,0.0,0,0.0,1.0,3.1741,3.0,0.9501,4.0
+BP,int64,False,47,0,0.0,0,0.0,94.0,131.3444,130.0,17.8616,200.0
+Cholesterol,int64,False,144,0,0.0,0,0.0,126.0,249.6593,245.0,51.6862,564.0
+FBS over 120,int64,False,2,0,0.0,230,85.1852,0.0,0.1481,0.0,0.3559,1.0
+EKG results,int64,False,3,0,0.0,131,48.5185,0.0,1.0222,2.0,0.9979,2.0
+Max HR,int64,False,90,0,0.0,0,0.0,71.0,149.6778,153.5,23.1657,202.0
+Exercise angina,int64,False,2,0,0.0,181,67.037,0.0,0.3296,0.0,0.471,1.0
+ST depression,float64,False,39,0,0.0,85,31.4815,0.0,1.05,0.8,1.1452,6.2
+Slope of ST,int64,False,3,0,0.0,0,0.0,1.0,1.5852,2.0,0.6144,3.0
+Number of vessels fluro,int64,False,4,0,0.0,160,59.2593,0.0,0.6704,0.0,0.9439,3.0
+Thallium,int64,False,3,0,0.0,0,0.0,3.0,4.6963,3.0,1.9407,7.0
+Heart Disease,str,True,2,0,0.0,0,0.0,,,,,
