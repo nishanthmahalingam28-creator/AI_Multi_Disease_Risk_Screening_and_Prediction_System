@@ -1,0 +1,100 @@
+{
+  "disease": "parkinsons",
+  "target": "status",
+  "target_mapping": {
+    "0": "Healthy",
+    "1": "Parkinson's disease screening positive"
+  },
+  "features": [
+    {
+      "name": "MDVP:Fo(Hz)",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:Fhi(Hz)",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:Flo(Hz)",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:Jitter(%)",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:Jitter(Abs)",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:RAP",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:PPQ",
+      "dtype": "float64"
+    },
+    {
+      "name": "Jitter:DDP",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:Shimmer",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:Shimmer(dB)",
+      "dtype": "float64"
+    },
+    {
+      "name": "Shimmer:APQ3",
+      "dtype": "float64"
+    },
+    {
+      "name": "Shimmer:APQ5",
+      "dtype": "float64"
+    },
+    {
+      "name": "MDVP:APQ",
+      "dtype": "float64"
+    },
+    {
+      "name": "Shimmer:DDA",
+      "dtype": "float64"
+    },
+    {
+      "name": "NHR",
+      "dtype": "float64"
+    },
+    {
+      "name": "HNR",
+      "dtype": "float64"
+    },
+    {
+      "name": "RPDE",
+      "dtype": "float64"
+    },
+    {
+      "name": "DFA",
+      "dtype": "float64"
+    },
+    {
+      "name": "spread1",
+      "dtype": "float64"
+    },
+    {
+      "name": "spread2",
+      "dtype": "float64"
+    },
+    {
+      "name": "D2",
+      "dtype": "float64"
+    },
+    {
+      "name": "PPE",
+      "dtype": "float64"
+    }
+  ],
+  "input_note": "Specialized voice measurements may require an appropriate measurement system.",
+  "disclaimer": "Screening/risk prediction only; not a medical diagnosis."
+}

@@ -1,0 +1,97 @@
+{
+  "disease": "asthma",
+  "model_name": "gradient_boosting",
+  "model_version": "member3a-1.0",
+  "dataset_name": "synthetic_asthma_dataset.csv",
+  "training_date": "2026-09-25",
+  "training_samples": 8000,
+  "features": [
+    "Age",
+    "Gender",
+    "BMI",
+    "Smoking_Status",
+    "Family_History",
+    "Allergies",
+    "Air_Pollution_Level",
+    "Physical_Activity_Level",
+    "Occupation_Type",
+    "Comorbidities",
+    "Medication_Adherence",
+    "Number_of_ER_Visits",
+    "Peak_Expiratory_Flow",
+    "FeNO_Level"
+  ],
+  "target": "Has_Asthma",
+  "class_labels": {
+    "0": "No asthma",
+    "1": "Has asthma"
+  },
+  "preprocessing_version": "median-impute/standardize numeric + most-frequent/one-hot categorical",
+  "validation_method": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42)",
+  "cv_roc_auc": 0.988509968857026,
+  "evaluation_metrics": {
+    "accuracy": 0.9315,
+    "balanced_accuracy": 0.8781409848391286,
+    "precision": 0.9331683168316832,
+    "recall": 0.7741273100616016,
+    "f1": 0.8462401795735129,
+    "roc_auc": 0.9853039570810674,
+    "pr_auc": 0.9585770687020954,
+    "confusion_matrix": [
+      [
+        1486,
+        27
+      ],
+      [
+        110,
+        377
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.931077694235589,
+        "recall": 0.9821546596166556,
+        "f1-score": 0.9559343840463171,
+        "support": 1513.0
+      },
+      "1": {
+        "precision": 0.9331683168316832,
+        "recall": 0.7741273100616016,
+        "f1-score": 0.8462401795735129,
+        "support": 487.0
+      },
+      "accuracy": 0.9315,
+      "macro avg": {
+        "precision": 0.932123005533636,
+        "recall": 0.8781409848391286,
+        "f1-score": 0.901087281809915,
+        "support": 2000.0
+      },
+      "weighted avg": {
+        "precision": 0.9315867608377378,
+        "recall": 0.9315,
+        "f1-score": 0.9292238452571894,
+        "support": 2000.0
+      }
+    }
+  },
+  "known_limitations": [
+    "The asthma dataset is synthetic.",
+    "Performance does not establish clinical validity or real-world medical effectiveness.",
+    "Outputs are screening/risk estimates, not medical diagnosis."
+  ],
+  "removed_columns": [
+    "Patient_ID",
+    "Asthma_Control_Level"
+  ],
+  "original_shape": [
+    10000,
+    17
+  ],
+  "duplicate_rows_removed": 0,
+  "missing_values": {
+    "Asthma_Control_Level": 7567,
+    "Comorbidities": 4967,
+    "Allergies": 2936
+  }
+}

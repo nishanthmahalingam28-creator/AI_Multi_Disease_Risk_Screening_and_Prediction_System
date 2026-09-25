@@ -1,0 +1,93 @@
+{
+  "disease": "parkinsons",
+  "model_name": "logistic_regression",
+  "model_version": "member3a-1.0",
+  "dataset_name": "Parkinsons_Disease_Dataset.xlsx",
+  "training_date": "2026-09-25",
+  "training_samples": 158,
+  "features": [
+    "MDVP:Fo(Hz)",
+    "MDVP:Fhi(Hz)",
+    "MDVP:Flo(Hz)",
+    "MDVP:Jitter(%)",
+    "MDVP:Jitter(Abs)",
+    "MDVP:RAP",
+    "MDVP:PPQ",
+    "Jitter:DDP",
+    "MDVP:Shimmer",
+    "MDVP:Shimmer(dB)",
+    "Shimmer:APQ3",
+    "Shimmer:APQ5",
+    "MDVP:APQ",
+    "Shimmer:DDA",
+    "NHR",
+    "HNR",
+    "RPDE",
+    "DFA",
+    "spread1",
+    "spread2",
+    "D2",
+    "PPE"
+  ],
+  "target": "status",
+  "class_labels": {
+    "0": "Healthy",
+    "1": "Parkinson's disease screening positive"
+  },
+  "preprocessing_version": "median-impute + standardization",
+  "validation_method": "StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)",
+  "group_column": "subject_id extracted from name",
+  "cv_roc_auc": 0.7972309941520467,
+  "evaluation_metrics": {
+    "accuracy": 0.8378378378378378,
+    "balanced_accuracy": 0.7016129032258065,
+    "precision": 0.9032258064516129,
+    "recall": 0.9032258064516129,
+    "f1": 0.9032258064516129,
+    "roc_auc": 0.8494623655913979,
+    "pr_auc": 0.9694186865854835,
+    "confusion_matrix": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        28
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1-score": 0.5,
+        "support": 6.0
+      },
+      "1": {
+        "precision": 0.9032258064516129,
+        "recall": 0.9032258064516129,
+        "f1-score": 0.9032258064516129,
+        "support": 31.0
+      },
+      "accuracy": 0.8378378378378378,
+      "macro avg": {
+        "precision": 0.7016129032258065,
+        "recall": 0.7016129032258065,
+        "f1-score": 0.7016129032258065,
+        "support": 37.0
+      },
+      "weighted avg": {
+        "precision": 0.8378378378378378,
+        "recall": 0.8378378378378378,
+        "f1-score": 0.8378378378378378,
+        "support": 37.0
+      }
+    }
+  },
+  "number_of_subjects": 32,
+  "known_limitations": [
+    "Screening/research decision support only; not diagnosis.",
+    "Performance depends on supplied voice measurements and dataset population."
+  ],
+  "duplicate_recordings_removed": 0
+}
