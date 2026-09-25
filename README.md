@@ -1,16 +1,25 @@
 # AI Multi-Disease Risk Screening and Prediction System
 
-## Member 3A — Asthma and Parkinson's Disease
+## Project layout
 
-The member3 branch contains the Member 3A ML implementation.
+```text
+backend/             FastAPI endpoints for heart, diabetes, and stroke
+dataset/             Version-controlled raw datasets
+docs/                Project and data-verification documentation
+ml/member1/          Heart, diabetes, and stroke modules
+ml/member3/          Asthma and Parkinson's modules
+member3b/            Flask cancer-prediction service (breast and lung)
+scripts/             Repository-level utility scripts
+```
 
-Train Asthma:
-`python -m asthma.train`
+## Training the Member 3 modules
 
-Train Parkinson's:
-`python -m parkinsons.train`
+```powershell
+python -m ml.member3.asthma.train
+python -m ml.member3.parkinsons.train
+```
 
-Training generates model files, preprocessors, schemas, metadata and evaluation reports.
+Training creates the model artifacts and evaluation reports in each disease module.
 
 Important limitations:
 - The Asthma dataset is synthetic, so model performance does not establish clinical validity or real-world medical effectiveness.

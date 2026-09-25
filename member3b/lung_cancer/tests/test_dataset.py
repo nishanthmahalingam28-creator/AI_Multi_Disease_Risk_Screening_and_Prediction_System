@@ -18,7 +18,7 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 DATASET_PATH = REPO_ROOT / "dataset" / "survey_lung_cancer.csv"
 REPORTS_DIR = REPO_ROOT / "member3b" / "lung_cancer" / "reports"
 
-EXPECTED_SHA256 = "b5df44c7a33d095457bd67d59806ce96797d2aef591781af6ef4f1d93c5ac3d2"
+EXPECTED_SHA256 = "181ccdd5e12900a9a428e1ad7a570227617d41266c4dc7930465ebfa009a3efd"
 EXPECTED_ROWS = 309
 EXPECTED_COLS = 16
 

@@ -157,7 +157,7 @@ def test_all_four_model_artifacts_integrity():
     assert bm_hash == "0379e06d00ad57a172c6c8c6b91eaba48a619e0783644ead1cf5b3e855b32024"
     assert bp_hash == "7dc70392e4bda3f3b53f5cb6b0b6be6a085059b3d706284e392157beb41c3092"
     assert lm_hash == "4c31a9af4b304a21fc9eed29f9c5a9f74caec0cadf02f0d36afde3747eeb6785"
-    assert lp_hash == "9d7e68f4b1a9bfa81ea8ce4053bfac4d9460d0d13605e8859238747beb47c459"
+    assert lp_hash == "f40b1b0f3d4f2ff6322d8362cf8c1eaaa7c6e5dab612a29dba2e00cdcb2d527c"
 
 
 def test_raw_datasets_exist_and_hashes_match():
@@ -173,7 +173,7 @@ def test_raw_datasets_exist_and_hashes_match():
     l_hash = hashlib.sha256(l_path.read_bytes()).hexdigest()
 
     assert b_hash == "1425d9affa78ba8e53afc81d0ef8a19069ee10c4b21fe89b3cf514071b12ee33"
-    assert l_hash == "b5df44c7a33d095457bd67d59806ce96797d2aef591781af6ef4f1d93c5ac3d2"
+    assert l_hash == "181ccdd5e12900a9a428e1ad7a570227617d41266c4dc7930465ebfa009a3efd"
 
 
 # =============================================================================

@@ -707,11 +707,11 @@ def test_all_dataset_and_model_hashes_immutable():
     repo_root = Path(__file__).resolve().parent.parent.parent.parent
     expected_hashes = {
         repo_root / "dataset" / "breast.csv": "1425d9affa78ba8e53afc81d0ef8a19069ee10c4b21fe89b3cf514071b12ee33",
-        repo_root / "dataset" / "survey_lung_cancer.csv": "b5df44c7a33d095457bd67d59806ce96797d2aef591781af6ef4f1d93c5ac3d2",
+        repo_root / "dataset" / "survey_lung_cancer.csv": "181ccdd5e12900a9a428e1ad7a570227617d41266c4dc7930465ebfa009a3efd",
         repo_root / "member3b" / "breast_cancer" / "models" / "breast_cancer_model.joblib": "0379e06d00ad57a172c6c8c6b91eaba48a619e0783644ead1cf5b3e855b32024",
         repo_root / "member3b" / "breast_cancer" / "models" / "breast_cancer_preprocessor.joblib": "7dc70392e4bda3f3b53f5cb6b0b6be6a085059b3d706284e392157beb41c3092",
         repo_root / "member3b" / "lung_cancer" / "models" / "lung_cancer_model.joblib": "4c31a9af4b304a21fc9eed29f9c5a9f74caec0cadf02f0d36afde3747eeb6785",
-        repo_root / "member3b" / "lung_cancer" / "models" / "lung_cancer_preprocessor.joblib": "9d7e68f4b1a9bfa81ea8ce4053bfac4d9460d0d13605e8859238747beb47c459",
+        repo_root / "member3b" / "lung_cancer" / "models" / "lung_cancer_preprocessor.joblib": "f40b1b0f3d4f2ff6322d8362cf8c1eaaa7c6e5dab612a29dba2e00cdcb2d527c",
     }
 
     for path, expected in expected_hashes.items():

@@ -2,10 +2,10 @@ import json
 import unittest
 from pathlib import Path
 
-from asthma.predict_user import predict_user as asthma_user
-from asthma.predict_clinical import predict_clinical as asthma_clinical
-from parkinsons.predict_user import predict_user as parkinsons_user
-from parkinsons.predict_clinical import predict_clinical as parkinsons_clinical
+from ml.member3.asthma.predict_user import predict_user as asthma_user
+from ml.member3.asthma.predict_clinical import predict_clinical as asthma_clinical
+from ml.member3.parkinsons.predict_user import predict_user as parkinsons_user
+from ml.member3.parkinsons.predict_clinical import predict_clinical as parkinsons_clinical
 
 
 ROOT = Path(__file__).resolve().parents[1]

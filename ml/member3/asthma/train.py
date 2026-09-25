@@ -14,7 +14,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.svm import SVC
 
-ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/"dataset"/"synthetic_asthma_dataset.csv"; OUT=ROOT/"asthma"; REPORTS=OUT/"reports"; RANDOM_STATE=42; TARGET="Has_Asthma"; DROP=["Patient_ID","Asthma_Control_Level"]
+ROOT=Path(__file__).resolve().parents[3]; DATA=ROOT/"dataset"/"synthetic_asthma_dataset.csv"; OUT=Path(__file__).resolve().parent; REPORTS=OUT/"reports"; RANDOM_STATE=42; TARGET="Has_Asthma"; DROP=["Patient_ID","Asthma_Control_Level"]
 
 def load_and_clean():
     df=pd.read_csv(DATA); original_shape=df.shape; df.columns=[c.strip() for c in df.columns]
@@ -47,22 +47,22 @@ def build_pipeline(X):
 
 def compare(X,y):
     cv=StratifiedKFold(5,shuffle=True,random_state=RANDOM_STATE)
-    models={"logistic_regression":LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE),"svm":CalibratedClassifierCV(SVC(class_weight="balanced",random_state=RANDOM_STATE),method="sigmoid",cv=5,ensemble=False),"random_forest":RandomForestClassifier(n_estimators=300,class_weight="balanced",random_state=RANDOM_STATE,n_jobs=-1),"gradient_boosting":GradientBoostingClassifier(random_state=RANDOM_STATE)}
+    models={"logistic_regression":LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE),"svm":CalibratedClassifierCV(SVC(class_weight="balanced",random_state=RANDOM_STATE),method="sigmoid",cv=5,ensemble=False),"random_forest":RandomForestClassifier(n_estimators=300,class_weight="balanced",random_state=RANDOM_STATE,n_jobs=1),"gradient_boosting":GradientBoostingClassifier(random_state=RANDOM_STATE)}
     rows=[]
     for name,m in models.items():
         pipe=Pipeline([("preprocessor",build_pipeline(X)),("model",m)])
-        s=cross_validate(pipe,X,y,cv=cv,scoring={"accuracy":"accuracy","precision":"precision","recall":"recall","f1":"f1","roc_auc":"roc_auc","balanced_accuracy":"balanced_accuracy"},n_jobs=-1)
+        s=cross_validate(pipe,X,y,cv=cv,scoring={"accuracy":"accuracy","precision":"precision","recall":"recall","f1":"f1","roc_auc":"roc_auc","balanced_accuracy":"balanced_accuracy"},n_jobs=1)
         rows.append({"model":name,**{k:float(s["test_"+k].mean()) for k in ["accuracy","precision","recall","f1","roc_auc","balanced_accuracy"]},"roc_auc_std":float(s["test_roc_auc"].std())})
     r=pd.DataFrame(rows).sort_values("roc_auc",ascending=False); r.to_csv(REPORTS/"model_comparison.csv",index=False); return r
 
 def tune(X,y,names):
     cv=StratifiedKFold(5,shuffle=True,random_state=RANDOM_STATE); out=[]
     for name in names:
-        if name=="random_forest": est=RandomForestClassifier(class_weight="balanced",random_state=RANDOM_STATE,n_jobs=-1); grid={"model__n_estimators":[200,400],"model__max_depth":[None,8,16],"model__min_samples_split":[2,5]}
+        if name=="random_forest": est=RandomForestClassifier(class_weight="balanced",random_state=RANDOM_STATE,n_jobs=1); grid={"model__n_estimators":[200,400],"model__max_depth":[None,8,16],"model__min_samples_split":[2,5]}
         elif name=="svm": est=CalibratedClassifierCV(SVC(class_weight="balanced",random_state=RANDOM_STATE),method="sigmoid",cv=5,ensemble=False); grid={"model__estimator__C":[0.1,1,10],"model__estimator__kernel":["rbf","linear"],"model__estimator__gamma":["scale","auto"]}
         elif name=="logistic_regression": est=LogisticRegression(max_iter=3000,class_weight="balanced",random_state=RANDOM_STATE); grid={"model__C":[0.1,1,10],"model__solver":["lbfgs","liblinear"]}
         else: est=GradientBoostingClassifier(random_state=RANDOM_STATE); grid={"model__n_estimators":[100,200],"model__learning_rate":[0.03,0.1],"model__max_depth":[2,3]}
-        search=GridSearchCV(Pipeline([("preprocessor",build_pipeline(X)),("model",est)]),grid,scoring="roc_auc",cv=cv,n_jobs=-1,refit=True); search.fit(X,y); out.append((name,search.best_score_,search.best_estimator_,search.best_params_))
+        search=GridSearchCV(Pipeline([("preprocessor",build_pipeline(X)),("model",est)]),grid,scoring="roc_auc",cv=cv,n_jobs=1,refit=True); search.fit(X,y); out.append((name,search.best_score_,search.best_estimator_,search.best_params_))
     out.sort(key=lambda x:x[1],reverse=True); pd.DataFrame([{"model":n,"cv_roc_auc":s,"best_params":json.dumps(p)} for n,s,_,p in out]).to_csv(REPORTS/"hyperparameter_tuning.csv",index=False); return out[0]
 
 def main():
