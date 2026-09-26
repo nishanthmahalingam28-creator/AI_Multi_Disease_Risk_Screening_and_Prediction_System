@@ -1,6 +1,7 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 
 from backend.schemas.prediction import PredictionRequest
+from backend.services.prediction_service import handle_prediction
 from ml.member1.src.predict_clinical import (
     predict_heart,
     predict_diabetes,
@@ -29,16 +30,6 @@ def health():
         "status": "healthy",
         "module": "member1",
     }
-
-
-def handle_prediction(predict_function, features):
-    try:
-        return predict_function(features)
-    except ValueError as exc:
-        raise HTTPException(
-            status_code=400,
-            detail=str(exc),
-        ) from exc
 
 
 @app.post("/api/predict/heart/clinical")
