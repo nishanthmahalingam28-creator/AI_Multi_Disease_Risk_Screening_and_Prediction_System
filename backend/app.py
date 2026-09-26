@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, ConfigDict
-from typing import Any
 
+from backend.schemas.prediction import PredictionRequest
 from ml.member1.src.predict_clinical import (
     predict_heart,
     predict_diabetes,
@@ -13,11 +12,6 @@ app = FastAPI(
     description="Screening-only API for heart disease, diabetes, and stroke.",
     version="1.0.0",
 )
-
-
-class PredictionRequest(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-    features: dict[str, Any]
 
 
 @app.get("/")
