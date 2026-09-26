@@ -1,20 +1,16 @@
-"""Service layer for executing disease prediction functions."""
+"""Service layer for executing registered disease prediction functions."""
 
-from collections.abc import Callable
 from typing import Any
 
 from fastapi import HTTPException
 
+from backend.core.model_registry import get_prediction_function
 
-PredictionFunction = Callable[[dict[str, Any]], Any]
 
-
-def handle_prediction(
-    predict_function: PredictionFunction,
-    features: dict[str, Any],
-) -> Any:
-    """Run a prediction function and convert validation errors to HTTP 400."""
+def predict_disease(disease: str, features: dict[str, Any]) -> Any:
+    """Run the registered prediction function for a disease."""
     try:
+        predict_function = get_prediction_function(disease)
         return predict_function(features)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
